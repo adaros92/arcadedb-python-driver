@@ -1,7 +1,10 @@
+from pyarcade.api import config
 from abc import ABC, abstractmethod
 
 import logging
 import requests
+
+from retry import retry
 
 
 class Client(ABC):
@@ -55,9 +58,11 @@ class Client(ABC):
         return self.__repr__()
 
     @abstractmethod
-    def post(self, endpoint: str) -> requests.Response:
+    @retry(tries=config.API_RETRY_MAX, delay=config.API_RETRY_DELAY, backoff=config.API_RETRY_BACKOFF)
+    def post(self, endpoint: str, payload: dict) -> requests.Response:
         pass
 
     @abstractmethod
+    @retry(tries=config.API_RETRY_MAX, delay=config.API_RETRY_DELAY, backoff=config.API_RETRY_BACKOFF)
     def get(self, endpoint: str) -> requests.Response:
         pass
