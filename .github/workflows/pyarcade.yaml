@@ -3,8 +3,6 @@ name: Publish distribution to PyPI
 on:
     push:
       branches: [ main ]
-    pull_request:
-      branches: [ main ]
 
 jobs:
     pypi-publish:
