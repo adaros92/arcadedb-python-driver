@@ -13,9 +13,9 @@ jobs:
       environment:
         name: pypi
         url: https://pypi.org/p/pyarcade
-        permissions:
-            id-token: write
-        steps:
+      permissions:
+        id-token: write
+      steps:
         - uses: actions/checkout@main
         - name: Initialize Python 3.10
           uses: actions/setup-python@v3
