@@ -1,11 +1,13 @@
 from dataclasses import dataclass
 
+from typing import Union
+
 
 @dataclass
 class RequestData:
     endpoint: str
-    command: str
-    language: str = "sql"
+    command: Union[str, None] = None
+    language: Union[str, None] = "sql"
 
     def payload(self) -> dict:
         if not self.language:
