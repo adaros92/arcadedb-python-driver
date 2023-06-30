@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="pyarcade",
-    version="0.0.3",
+    version="0.0.4",
     author="Adams Rosales",
     author_email="adams.rosales.92@gmail.com",
     description="A Python driver for ArcadeDB",
