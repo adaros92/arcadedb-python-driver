@@ -22,5 +22,4 @@ setuptools.setup(
     install_requires=["retry", "requests"],
     url="https://github.com/adaros92/arcadedb-python-driver",
     packages=setuptools.find_packages(),
-
 )

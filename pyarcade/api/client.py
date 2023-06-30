@@ -8,7 +8,6 @@ from retry import retry
 
 
 class Client(ABC):
-
     def __init__(self, host: str, port: str, protocol: str = "http", **kwargs):
         self.host = host
         self.port = int(port)
@@ -35,7 +34,7 @@ class Client(ABC):
         default = "application/json"
         key = "content_type"
         if key not in self.kwargs:
-            logging.warning(f"No content type specified, defaulting to {default}")
+            logging.warning(f"No content type, defaulting to {default}")
         content_type = self.kwargs.get(key, default)
         return {"Content-Type": content_type}
 
@@ -52,17 +51,25 @@ class Client(ABC):
         return self.kwargs.get("password") or self.kwargs.get("pw")
 
     def __repr__(self) -> str:
-        return f"<Client host={self.host} port={self.port} username={self.username}>"
+        return f"<host={self.host} port={self.port} user={self.username}>"
 
     def __str__(self) -> str:
         return self.__repr__()
 
     @abstractmethod
-    @retry(tries=config.API_RETRY_MAX, delay=config.API_RETRY_DELAY, backoff=config.API_RETRY_BACKOFF)
+    @retry(
+        tries=config.API_RETRY_MAX,
+        delay=config.API_RETRY_DELAY,
+        backoff=config.API_RETRY_BACKOFF,
+    )
     def post(self, endpoint: str, payload: dict) -> requests.Response:
         pass
 
     @abstractmethod
-    @retry(tries=config.API_RETRY_MAX, delay=config.API_RETRY_DELAY, backoff=config.API_RETRY_BACKOFF)
+    @retry(
+        tries=config.API_RETRY_MAX,
+        delay=config.API_RETRY_DELAY,
+        backoff=config.API_RETRY_BACKOFF,
+    )
     def get(self, endpoint: str) -> requests.Response:
         pass

@@ -6,7 +6,6 @@ import requests
 
 
 class SyncClient(Client):
-
     def __init__(self, host: str, port: str, protocol: str = "http", **kwargs):
         super().__init__(host, port, protocol, **kwargs)
 
