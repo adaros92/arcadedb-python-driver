@@ -14,7 +14,7 @@ class DatabaseDao:
         self,
         client: Client,
         mutation_endpoint: str = config.ARCADE_BASE_SERVER_ENDPOINT,
-        exists_endpoint: str = config.ARCADE_BASE_SERVER_ENDPOINT,
+        exists_endpoint: str = config.ARCADE_BASE_EXISTS_ENDPOINT,
     ):
         self.client = client
         self.mutation_endpoint = mutation_endpoint
